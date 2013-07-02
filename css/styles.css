@@ -38,3 +38,6 @@ body {
     color: green;
     line-height: 13px;
 }
+
+.date { float: right; }
+.box { border:1px solid #f3f3f3; margin:5px; padding:5px; }
