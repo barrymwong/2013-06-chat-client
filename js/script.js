@@ -8,14 +8,13 @@
   var pullData = function() {
     $('#main').html('');
     $.ajax({
+      type: 'GET',
       url: app.parseUrl,
       data: dataString,
       contentType: 'application/json',
       success: function(data){
         var result = data.results;
         app.timestamp = result[0].createdAt;
-        // console.log(data);
-
         for(var i = 0; i < result.length; i++) {
           var username = $('<a/>').addClass('username').attr('href', '#').text('@' + result[i].username);
           var date = $('<span/>').addClass('date').text(moment().startOf(result[i].createdAt).fromNow());
@@ -46,8 +45,9 @@
 
   var pushData = function() {
     $.ajax({
+      type: 'POST',
       url: app.parseUrl,
-      data: sendData,
+      data: JSON.stringify(sendData),
       contentType: 'application/json',
       success: function(data){
         console.log('sent!');
@@ -73,3 +73,5 @@
 
 // if time is newer than last updated time, then request those.
 // remove the number of nodes at the bottom equal to the number of new requested
+
+
